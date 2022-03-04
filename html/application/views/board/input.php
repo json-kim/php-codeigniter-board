@@ -1,4 +1,4 @@
-<form>
+<form method="post", action="/index.php/form/board_insert">
 
 <input type="text" name="title"> <br />
 <textArea name="content"></textArea> <br />

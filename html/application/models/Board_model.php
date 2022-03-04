@@ -47,4 +47,45 @@ class Board_model extends CI_Model {
         return $data->row();
     }
 
+    public function view_select($id) {
+
+        $data = $this->db->query('
+        select 
+            _id,
+            title,
+            content,
+            (select email from ci_member where _id = ci_board.member_id) as name 
+        from 
+            ci_board as ci_board
+        where
+            _id = '.$id.'
+        ;
+        ');
+
+        return $data->row();
+        
+    }
+
+    public function board_insert($title, $content) {
+        $this->db->query('
+        INSERT INTO ci_board
+            (title, content)
+        VALUES
+            ("'.$title.'", "'.$content.'")
+        ;
+        ');
+    }
+
+    public function board_update($_id, $title, $content) {
+        $this->db->query("
+        UPDATE
+            ci_board
+        SET
+            title = '".$title."',
+            content = '".$content."'
+        WHERE
+            _id = ".$_id."
+        ;
+        ");
+    }
 }

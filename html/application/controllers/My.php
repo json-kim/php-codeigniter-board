@@ -17,5 +17,9 @@ class My extends CI_Controller {
         $data['news'] = $this->Sample_model->get_select();
 
         print_r($data);
+
+        // $data['my_val'] = 'hi';
+
+        // $this->load->view('my_view');
 	}
 }

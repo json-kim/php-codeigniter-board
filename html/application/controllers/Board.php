@@ -53,6 +53,7 @@ class Board extends CI_Controller {
         $id = $this->input->get('id');
 
         // id를 가지고 모델의 view_select메서드를 호출하여 기존 값 불러오기
+        // 기존에 작성했던 코드의 재사용
         $result = $this->Board_model->view_select($id);
 
         // 쿼리 수행 결과값을 배열에 저장하고 뷰에 전달하며 뷰 호출
@@ -71,6 +72,16 @@ class Board extends CI_Controller {
         // 모델 메서드(쿼리 수행) 결과값을 뷰에 전달하며 뷰 호출
         $data['result'] = $result;
         $this->load->view('board/view', $data);
+        $this->comment_list($id);
+
+    }
+
+    private function comment_list($board_id) {
+
+        $data['result'] = $result = $this->Board_model->comment_list($board_id);
+        $data['board_id'] = $board_id;
+
+        $this->load->view('comment/list', $data);
 
     }
 }
